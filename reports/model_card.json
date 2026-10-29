@@ -1,0 +1,123 @@
+{
+  "lineage": {
+    "trained_at_utc": "2026-10-29T21:23:54+00:00",
+    "source_file": "german_credit_data.csv",
+    "source_sha256": "42be3b82a2e5073bd5ca23bce1d1c31426b78f72d20cd892f3aacaa2ba30a075",
+    "rows": 1000,
+    "train_rows": 800,
+    "test_rows": 200,
+    "seed": 42,
+    "features": [
+      "sex",
+      "housing",
+      "saving_accounts",
+      "checking_account",
+      "purpose",
+      "age",
+      "job",
+      "credit_amount",
+      "duration",
+      "monthly_burden"
+    ],
+    "python": "3.11.4",
+    "sklearn": "1.5.1",
+    "xgboost": "3.2.0"
+  },
+  "best_model": "random_forest",
+  "model_comparison": {
+    "logistic_regression": {
+      "cv_auc": 0.751,
+      "test_auc": 0.7523,
+      "test_gini": 0.5045,
+      "test_ks": 0.4833,
+      "best_params": {
+        "clf__C": 0.1
+      }
+    },
+    "random_forest": {
+      "cv_auc": 0.7712,
+      "test_auc": 0.7877,
+      "test_gini": 0.5755,
+      "test_ks": 0.4786,
+      "best_params": {
+        "clf__max_depth": 6,
+        "clf__min_samples_leaf": 5,
+        "clf__n_estimators": 400
+      }
+    },
+    "extra_trees": {
+      "cv_auc": 0.7516,
+      "test_auc": 0.7739,
+      "test_gini": 0.5479,
+      "test_ks": 0.4667,
+      "best_params": {
+        "clf__max_depth": 6,
+        "clf__min_samples_leaf": 5,
+        "clf__n_estimators": 400
+      }
+    },
+    "xgboost": {
+      "cv_auc": 0.7642,
+      "test_auc": 0.7755,
+      "test_gini": 0.551,
+      "test_ks": 0.4429,
+      "best_params": {
+        "clf__learning_rate": 0.03,
+        "clf__max_depth": 2,
+        "clf__n_estimators": 400,
+        "clf__subsample": 0.8
+      }
+    }
+  },
+  "threshold": {
+    "default_0.5": {
+      "recall_bad": 0.6833,
+      "precision_bad": 0.5125
+    },
+    "tuned": {
+      "value": 0.405,
+      "recall_bad": 0.85,
+      "precision_bad": 0.4811
+    }
+  },
+  "risk_bands_test": [
+    {
+      "band": "A (lowest)",
+      "count": 35,
+      "mean": 0.086
+    },
+    {
+      "band": "B",
+      "count": 43,
+      "mean": 0.093
+    },
+    {
+      "band": "C",
+      "count": 42,
+      "mean": 0.286
+    },
+    {
+      "band": "D",
+      "count": 40,
+      "mean": 0.35
+    },
+    {
+      "band": "E (highest)",
+      "count": 40,
+      "mean": 0.675
+    }
+  ],
+  "risk_band_edges": [
+    0.2354,
+    0.3465,
+    0.5026,
+    0.6357
+  ],
+  "latency": {
+    "multithreaded_p50_ms": 40.11,
+    "multithreaded_p95_ms": 41.46,
+    "single_p50_ms": 9.42,
+    "single_p95_ms": 9.98,
+    "batch_rows_per_s": 158453
+  }
+}
